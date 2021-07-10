@@ -62,6 +62,8 @@ namespace Examples.Charge.API
                     options.IncludeXmlComments(xmlWebApiFile);
                 }
             });
+
+            services.AddCors();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -70,6 +72,8 @@ namespace Examples.Charge.API
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200"));
 
             app.UseSwagger();
 
@@ -81,6 +85,7 @@ namespace Examples.Charge.API
 
 
             app.UseMvc();
+
         }
 
     }
