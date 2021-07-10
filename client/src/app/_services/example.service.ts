@@ -32,4 +32,16 @@ export class ExampleService {
     );
   }
 
+  updateExample(example : Example){
+    return this.httpClient.put(this.baseUrl + "example/", example);
+  }
+
+  insertExample(example : Example){
+    return this.httpClient.post(this.baseUrl + "example/", example);
+  }
+
+  deleteExampleById(id : number){
+    return this.httpClient.delete(this.baseUrl + "example/" + id);
+  }
+
 }

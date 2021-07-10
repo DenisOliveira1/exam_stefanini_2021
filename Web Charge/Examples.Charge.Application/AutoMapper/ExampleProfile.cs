@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Examples.Charge.Application.Dtos;
+using Examples.Charge.Application.Messages.Request;
 using Examples.Charge.Domain.Aggregates.ExampleAggregate;
 
 namespace Examples.Charge.Application.AutoMapper
@@ -12,6 +13,9 @@ namespace Examples.Charge.Application.AutoMapper
                .ReverseMap()
                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
                .ForMember(dest => dest.Nome, opt => opt.MapFrom(src => src.Nome));
+
+            CreateMap<Example, ExampleRequest>()
+                .ReverseMap();
         }
     }
 }
