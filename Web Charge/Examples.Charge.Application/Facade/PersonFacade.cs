@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using Examples.Charge.Application.Dtos;
 using Examples.Charge.Application.Interfaces;
+using Examples.Charge.Application.Messages.Request;
 using Examples.Charge.Application.Messages.Response;
+using Examples.Charge.Domain.Aggregates.PersonAggregate;
 using Examples.Charge.Domain.Aggregates.PersonAggregate.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,13 +22,34 @@ namespace Examples.Charge.Application.Facade
             _mapper = mapper;
         }
 
-        public async Task<PersonResponse> FindAllAsync()
+        public async Task<PersonListResponse> FindAllAsync()
         {
             var result = await _personService.FindAllAsync();
-            var response = new PersonResponse();
+            var response = new PersonListResponse();
             response.PersonObjects = new List<PersonDto>();
             response.PersonObjects.AddRange(result.Select(x => _mapper.Map<PersonDto>(x)));
             return response;
         }
+        public async Task<PersonResponse> FindAsync(int id)
+        {
+            var result = await _personService.FindAsync(id);
+            var response = new PersonResponse();
+            response.PersonObject = new PersonDto();
+            response.PersonObject = _mapper.Map<PersonDto>(result);
+            return response;
+        }
+
+        public async Task<bool> InsertAsync(PersonRequest personRequest)
+        {
+            var person = _mapper.Map<Person>(personRequest);
+            return await _personService.InsertAsync(person);
+        }
+
+        public async Task<bool> UpdateAsync(PersonRequest personRequest)
+        {
+            var person = _mapper.Map<Person>(personRequest);
+            return await _personService.UpdateAsync(person);
+        }
+        public Task<bool> DeleteAsync(int id) => (_personService.DeleteAsync(id));
     }
 }
