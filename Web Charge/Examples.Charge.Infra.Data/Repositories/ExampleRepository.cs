@@ -24,6 +24,12 @@ namespace Examples.Charge.Infra.Data.Repositories
             return example;
         }
 
+        public async Task<bool> InsertAsync(Example example)
+        {
+            _context.Add(example);
+            return await _context.SaveChangesAsync() > 0;
+        }
+
         public async Task<bool> UpdateAsync(Example example)
         {
             var exampleUpdating = await _context.Example.FindAsync(example.Id);

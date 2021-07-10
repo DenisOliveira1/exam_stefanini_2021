@@ -10,5 +10,6 @@ namespace Examples.Charge.Application.Interfaces
         Task<ExampleListResponse> FindAllAsync();
         Task<ExampleResponse> FindAsync(int id);
         Task<bool> UpdateAsync(ExampleRequest exampleRequest);
+        Task<bool> InsertAsync(ExampleRequest exampleRequest);
     }
 }

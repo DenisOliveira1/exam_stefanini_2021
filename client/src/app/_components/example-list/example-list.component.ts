@@ -20,6 +20,7 @@ export class ExampleListComponent implements OnInit {
   ngOnInit(): void {
     this.loadExamples();
     this.loadExample();
+    this.insertExample();
   }
 
   loadExamples(){
@@ -39,6 +40,16 @@ export class ExampleListComponent implements OnInit {
     const date = new Date();
     this.example.nome = "Updated " + date.getHours().toString() + ":" + date.getMinutes().toString() + ":" + date.getSeconds().toString();
     this.exampleService.updateExample(this.example).subscribe(() => {
+    });
+  }
+
+  insertExample(){
+    const date = new Date();
+    const exampleNew : Example = {
+      id: 0,
+      nome: "Inserted " + date.getHours().toString() + ":" + date.getMinutes().toString() + ":" + date.getSeconds().toString()
+    }; 
+    this.exampleService.insertExample(exampleNew).subscribe(() => {
     });
   }
 

@@ -33,7 +33,11 @@ export class ExampleService {
   }
 
   updateExample(example : Example){
-    return this.httpClient.put(this.baseUrl + "example/", example);;
+    return this.httpClient.put(this.baseUrl + "example/", example);
+  }
+
+  insertExample(example : Example){
+    return this.httpClient.post(this.baseUrl + "example/", example);
   }
 
 }

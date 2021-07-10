@@ -41,9 +41,10 @@ namespace Examples.Charge.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] ExampleRequest request)
+        public async Task<ActionResult> Post([FromBody] ExampleRequest exampleRequest)
         {
-            return Response(0, null);
+            if (await _facade.InsertAsync(exampleRequest)) return Ok();
+            return BadRequest("Failed to update example");
         }
     }
 }
