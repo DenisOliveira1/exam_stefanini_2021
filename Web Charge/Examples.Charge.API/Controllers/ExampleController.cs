@@ -4,6 +4,7 @@ using Examples.Charge.Application.Interfaces;
 using Examples.Charge.Application.Messages.Request;
 using Examples.Charge.Application.Messages.Response;
 using System.Threading.Tasks;
+using Examples.Charge.Application.Dtos;
 
 namespace Examples.Charge.API.Controllers
 {
@@ -11,6 +12,10 @@ namespace Examples.Charge.API.Controllers
     [ApiController]
     public class ExampleController : BaseController
     {
+
+        //Controller        >       Facade      >       Service         >       Repository
+        //                          _Mapper
+
         private IExampleFacade _facade;
 
         public ExampleController(IExampleFacade facade, IMapper mapper)
@@ -26,6 +31,13 @@ namespace Examples.Charge.API.Controllers
         {
             var response = await _facade.FindAsync(id);
             return Response(response);
+        }
+
+        [HttpPut]
+        public async Task<ActionResult> Update([FromBody] ExampleRequest exampleRequest)
+        {
+            if (await _facade.UpdateAsync(exampleRequest)) return NoContent();
+            return BadRequest("Failed to update example");
         }
 
         [HttpPost]

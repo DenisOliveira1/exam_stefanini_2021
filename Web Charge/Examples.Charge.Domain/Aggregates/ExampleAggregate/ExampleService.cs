@@ -17,5 +17,6 @@ namespace Examples.Charge.Domain.Aggregates.ExampleAggregate
 
         public async Task<List<Example>> FindAllAsync() => (await _exampleRepository.FindAllAsync()).ToList();
         public async Task<Example> FindAsync(int id) => (await _exampleRepository.FindAsync(id));
+        public async Task<bool> UpdateAsync(Example example) => (await _exampleRepository.UpdateAsync(example));
     }
 }

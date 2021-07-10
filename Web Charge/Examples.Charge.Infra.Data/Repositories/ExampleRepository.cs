@@ -1,6 +1,7 @@
 ﻿using Examples.Charge.Domain.Aggregates.ExampleAggregate;
 using Examples.Charge.Domain.Aggregates.ExampleAggregate.Interfaces;
 using Examples.Charge.Infra.Data.Context;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -21,6 +22,14 @@ namespace Examples.Charge.Infra.Data.Repositories
         {
             var example = await _context.Example.FindAsync(id);
             return example;
+        }
+
+        public async Task<bool> UpdateAsync(Example example)
+        {
+            var exampleUpdating = await _context.Example.FindAsync(example.Id);
+            exampleUpdating.Nome = example.Nome;
+            _context.Entry(exampleUpdating).State = EntityState.Modified;
+            return await _context.SaveChangesAsync() > 0;
         }
     }
 }

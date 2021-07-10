@@ -31,6 +31,14 @@ export class ExampleListComponent implements OnInit {
   loadExample(){
     this.exampleService.getExampleById(3).subscribe((response : Example) => {
       this.example = response;
+      this.updateExample();
+    });
+  }
+
+  updateExample(){
+    const date = new Date();
+    this.example.nome = "Updated " + date.getHours().toString() + ":" + date.getMinutes().toString() + ":" + date.getSeconds().toString();
+    this.exampleService.updateExample(this.example).subscribe(() => {
     });
   }
 

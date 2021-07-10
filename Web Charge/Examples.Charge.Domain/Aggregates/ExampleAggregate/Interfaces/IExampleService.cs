@@ -9,5 +9,6 @@ namespace Examples.Charge.Domain.Aggregates.ExampleAggregate.Interfaces
     {
         Task<List<Example>> FindAllAsync();
         Task<Example> FindAsync(int id);
+        Task<bool> UpdateAsync(Example example);
     }
 }
