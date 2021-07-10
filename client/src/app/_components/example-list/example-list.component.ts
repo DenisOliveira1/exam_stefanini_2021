@@ -26,6 +26,7 @@ export class ExampleListComponent implements OnInit {
   loadExamples(){
     this.exampleService.getExamples().subscribe((response : Example[]) => {
       this.examples = response;
+      this.deleteExample();
     });
   }
 
@@ -51,6 +52,16 @@ export class ExampleListComponent implements OnInit {
     }; 
     this.exampleService.insertExample(exampleNew).subscribe(() => {
     });
+  }
+
+  deleteExample(){
+    if (this.examples.length-1 >= 0){
+      const idDelete = this.examples[this.examples.length-1].id;
+      this.exampleService.deleteExampleById(idDelete).subscribe(() => {
+          console.log("Deleted: " + idDelete)
+      });
+    }
+
   }
 
 }

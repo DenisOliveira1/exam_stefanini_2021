@@ -50,5 +50,6 @@ namespace Examples.Charge.Application.Facade
             var example = _mapper.Map<Example>(exampleRequest);
             return await _exampleService.UpdateAsync(example);
         }
+        public Task<bool> DeleteAsync(int id) => (_exampleService.DeleteAsync(id));
     }
 }

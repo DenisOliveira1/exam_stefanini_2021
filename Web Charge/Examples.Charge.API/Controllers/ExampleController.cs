@@ -44,7 +44,14 @@ namespace Examples.Charge.API.Controllers
         public async Task<ActionResult> Post([FromBody] ExampleRequest exampleRequest)
         {
             if (await _facade.InsertAsync(exampleRequest)) return Ok();
-            return BadRequest("Failed to update example");
+            return BadRequest("Failed to insert example");
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            if (await _facade.DeleteAsync(id)) return Ok();
+            return BadRequest("Failed to delete example");
         }
     }
 }

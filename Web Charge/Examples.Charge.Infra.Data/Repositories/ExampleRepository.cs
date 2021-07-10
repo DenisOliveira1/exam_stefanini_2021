@@ -37,5 +37,12 @@ namespace Examples.Charge.Infra.Data.Repositories
             _context.Entry(exampleUpdating).State = EntityState.Modified;
             return await _context.SaveChangesAsync() > 0;
         }
+
+        public async Task<bool> DeleteAsync(int id)
+        {
+            var exampleDeleting = await _context.Example.FindAsync(id);
+            _context.Remove(exampleDeleting);
+            return await _context.SaveChangesAsync() > 0;
+        }
     }
 }

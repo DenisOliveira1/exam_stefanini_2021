@@ -40,4 +40,8 @@ export class ExampleService {
     return this.httpClient.post(this.baseUrl + "example/", example);
   }
 
+  deleteExampleById(id : number){
+    return this.httpClient.delete(this.baseUrl + "example/" + id);
+  }
+
 }

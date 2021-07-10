@@ -19,5 +19,6 @@ namespace Examples.Charge.Domain.Aggregates.ExampleAggregate
         public async Task<Example> FindAsync(int id) => (await _exampleRepository.FindAsync(id));
         public async Task<bool> InsertAsync(Example example) => (await _exampleRepository.InsertAsync(example));
         public async Task<bool> UpdateAsync(Example example) => (await _exampleRepository.UpdateAsync(example));
+        public async Task<bool> DeleteAsync(int id) => (await _exampleRepository.DeleteAsync(id));
     }
 }
