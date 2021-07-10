@@ -7,5 +7,6 @@ namespace Examples.Charge.Application.Interfaces
     public interface IExampleFacade
     {
         Task<ExampleListResponse> FindAllAsync();
+        Task<ExampleResponse> FindAsync(int id);
     }
 }

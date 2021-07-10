@@ -9,12 +9,13 @@ namespace Examples.Charge.Domain.Aggregates.ExampleAggregate
 {
     public class ExampleService : IExampleService
     {
-        private IExampleRepository _exampleService;
+        private IExampleRepository _exampleRepository;
         public ExampleService(IExampleRepository exampleService)
         {
-            _exampleService = exampleService;
+            _exampleRepository = exampleService;
         }
 
-        public async Task<List<Example>> FindAllAsync() => (await _exampleService.FindAllAsync()).ToList();
+        public async Task<List<Example>> FindAllAsync() => (await _exampleRepository.FindAllAsync()).ToList();
+        public async Task<Example> FindAsync(int id) => (await _exampleRepository.FindAsync(id));
     }
 }

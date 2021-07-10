@@ -1,0 +1,10 @@
+<ng-container *ngIf="examples">
+    <div *ngFor="let example of examples">
+        {{example.nome}} - {{example.id}}
+    </div>
+</ng-container>
+
+<hr>
+<ng-container *ngIf="example">
+    <p>{{example.nome}} - {{example.id}}</p>
+</ng-container>

@@ -22,9 +22,10 @@ namespace Examples.Charge.API.Controllers
         public async Task<ActionResult<ExampleListResponse>> Get() => Response(await _facade.FindAllAsync());
 
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public async Task<ActionResult<ExampleResponse>> GetById(int id)
         {
-            return Response(null);
+            var response = await _facade.FindAsync(id);
+            return Response(response);
         }
 
         [HttpPost]
