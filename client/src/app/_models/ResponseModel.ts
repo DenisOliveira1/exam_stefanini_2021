@@ -7,5 +7,7 @@ export class ResponseModel{
 
 export class Data{
     errors : string[];
+    success : boolean;
     exampleObjects : Example[];
+    exampleObject : Example;
 }

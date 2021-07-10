@@ -24,4 +24,12 @@ export class ExampleService {
     );
   }
 
+  getExampleById(id : number){
+    return this.httpClient.get(this.baseUrl + "example/" + id).pipe(
+      map((response : ResponseModel) => {
+        return response.data.exampleObject;
+      })
+    );
+  }
+
 }

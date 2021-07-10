@@ -11,6 +11,7 @@ import { ExampleService } from 'src/app/_services/example.service';
 export class ExampleListComponent implements OnInit {
 
   examples : Example[];
+  example : Example;
 
   constructor(
     private exampleService : ExampleService
@@ -18,11 +19,18 @@ export class ExampleListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadExamples();
+    this.loadExample();
   }
 
   loadExamples(){
     this.exampleService.getExamples().subscribe((response : Example[]) => {
       this.examples = response;
+    });
+  }
+
+  loadExample(){
+    this.exampleService.getExampleById(3).subscribe((response : Example) => {
+      this.example = response;
     });
   }
 
