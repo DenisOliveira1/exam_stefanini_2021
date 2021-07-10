@@ -26,16 +26,16 @@ namespace Examples.Charge.Application.Facade
         {
             var result = await _personService.FindAllAsync();
             var response = new PersonListResponse();
-            response.PersonObjects = new List<PersonDto>();
-            response.PersonObjects.AddRange(result.Select(x => _mapper.Map<PersonDto>(x)));
+            response.Objects = new List<PersonDto>();
+            response.Objects.AddRange(result.Select(x => _mapper.Map<PersonDto>(x)));
             return response;
         }
         public async Task<PersonResponse> FindAsync(int id)
         {
             var result = await _personService.FindAsync(id);
             var response = new PersonResponse();
-            response.PersonObject = new PersonDto();
-            response.PersonObject = _mapper.Map<PersonDto>(result);
+            response.Object = new PersonDto();
+            response.Object = _mapper.Map<PersonDto>(result);
             return response;
         }
 

@@ -8,6 +8,6 @@ namespace Examples.Charge.Application.Messages.Response
 {
     public class ExampleResponse : BaseResponse
     {
-        public ExampleDto ExampleObject { get; set; }
+        public ExampleDto Object { get; set; }
     }
 }
