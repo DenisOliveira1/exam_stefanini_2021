@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { NumberTypeEnum } from 'src/app/_models/enums/NumberTypeEnum';
 import { Person } from 'src/app/_models/Person';
 import { PersonPhone } from 'src/app/_models/PersonPhone';
 import { PersonPhoneService } from 'src/app/_services/person-phone.service';
@@ -80,4 +81,5 @@ export class PersonComponent implements OnInit {
     })
   }
 
+  getNumberTypeEnum = (value : number) => NumberTypeEnum[value];
 }
