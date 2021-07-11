@@ -12,13 +12,16 @@
     <div class="row mt-5">
         <div class="offset-3 col-6">
             <div class="row">
-                <div class="col-9">
+                <div class="col-8">
                     <label for="phoneNumber">Phone Number</label>
-                    <input class="form-control" type="text" name="phoneNumber" [(ngModel)]="phone.phoneNumber" [disabled]="!isEdit && !isAdd"/>
+                    <input class="form-control masked" type="text" name="phoneNumber" [(ngModel)]="phone.phoneNumber" mask="(00)00000-0000" [disabled]="!isEdit && !isAdd"/>
                 </div>
-                <div class="col-3">
+                <div class="col-4">
                     <label for="phoneNumberTypeID">Type</label>
-                    <input class="form-control" type="text" name="phoneNumberTypeID" [(ngModel)]="phone.phoneNumberTypeID" [disabled]="!isEdit && !isAdd"/>
+                    <select class="form-control" type="text" name="phoneNumberTypeID" [(ngModel)]="phone.phoneNumberTypeID" [disabled]="!isEdit && !isAdd">
+                        <option value=1>Local Phone</option>
+                        <option value=2>Cellphone</option>
+                    </select>
                 </div>
             </div>
         </div>

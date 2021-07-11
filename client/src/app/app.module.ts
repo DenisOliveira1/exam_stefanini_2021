@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -11,14 +11,18 @@ import { PersonComponent } from './_components/person/person.component';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
 import { PersonPhoneComponent } from './_components/person-phone/person-phone.component'; 
-
+import { NgxMaskModule } from 'ngx-mask';
+import { NavComponent } from './_components/nav/nav.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
     ExampleListComponent,
     PersonListComponent,
     PersonComponent,
-    PersonPhoneComponent
+    PersonPhoneComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
@@ -31,9 +35,15 @@ import { PersonPhoneComponent } from './_components/person-phone/person-phone.co
       progressBar: true,
       preventDuplicates: true
     }),
-    FormsModule 
+    FormsModule,
+    NgxSpinnerModule,
+    NgxMaskModule.forRoot({
+      dropSpecialCharacters: false
+    })
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

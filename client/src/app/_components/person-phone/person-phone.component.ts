@@ -98,9 +98,12 @@ export class PersonPhoneComponent implements OnInit {
     if (this.phone.phoneNumber == ""){
       this.toastr.warning("Phone number field must be filled");
       errors++;
+    } else if (this.phone.phoneNumber.length < 14){
+        this.toastr.warning("Phone number must be in the format: (00)00000-0000");
+        errors++;
     }
     if (this.phone.phoneNumberTypeID == undefined || this.phone.phoneNumberTypeID.toString() == ""){
-      this.toastr.warning("Type field must be filled");
+      this.toastr.warning("Type field must be selected");
       errors++;
     }
 

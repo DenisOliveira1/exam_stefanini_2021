@@ -13,27 +13,20 @@ import { ResponseModel } from '../_models/ResponseModel';
 export class PersonService {
 
   baseUrl = environment.apiUrl;
-  // people : Person[];
 
   constructor(
     private httpClient : HttpClient
   ) { }
 
   getPeople(){
-    // if (this.people.length > 0) return of(this.people);
-
     return this.httpClient.get(this.baseUrl + "person").pipe(
       map((response : ResponseModel<Person>) => {
-        // this.people =  response.data.objects;
         return response.data.objects;
       })
     );
   }
 
   getPersonById(id : number){
-    // const person = this.people?.find(x => x.businessEntityID === id);
-    // if (person !== undefined) return of(person);
-
     return this.httpClient.get(this.baseUrl + "person/" + id).pipe(
       map((response : ResponseModel<Person>) => {
         return response.data.object;
@@ -43,13 +36,6 @@ export class PersonService {
 
   updatePerson(person : Person){
     return this.httpClient.put(this.baseUrl + "person/", person).pipe(
-      // map(() => {
-      //   // Updating memory array
-      //   const indexPerson = this.people?.indexOf(person);
-      //   if (indexPerson){
-      //     this.people[indexPerson] = person;
-      //   }
-      // })
     );
   }
 
