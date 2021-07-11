@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Person } from 'src/app/_models/Person';
 import { PersonService } from 'src/app/_services/person.service';
 
@@ -12,7 +13,8 @@ export class PersonListComponent implements OnInit {
   people : Person[];
 
   constructor(
-    private personService : PersonService
+    private personService : PersonService,
+    private toastr: ToastrService,
   ) { }
 
   ngOnInit(): void {
@@ -22,6 +24,13 @@ export class PersonListComponent implements OnInit {
   loadPeople(){
     this.personService.getPeople().subscribe((response : Person[]) => {
       this.people = response;
+    });
+  }
+
+  deletePerson(id : number){
+    this.personService.deletePersonById(id).subscribe(() => {
+      this.toastr.success("Person deleted successfully");
+      this.people = this.people.filter(x => x.businessEntityID !== id);
     });
   }
 
