@@ -9,14 +9,16 @@ import { PersonListComponent } from './_components/person-list/person-list.compo
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PersonComponent } from './_components/person/person.component';
 import { ToastrModule } from 'ngx-toastr';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
+import { PersonPhoneComponent } from './_components/person-phone/person-phone.component'; 
 
 @NgModule({
   declarations: [
     AppComponent,
     ExampleListComponent,
     PersonListComponent,
-    PersonComponent
+    PersonComponent,
+    PersonPhoneComponent
   ],
   imports: [
     BrowserModule,

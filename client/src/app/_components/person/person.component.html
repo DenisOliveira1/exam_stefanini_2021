@@ -1,22 +1,80 @@
+<!-- Necessário para os icones -->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="row mt-5">
+  <div class="offset-3 col-3">
+      <h1 *ngIf="!isEdit && !isAdd">Person View</h1>
+      <h1 *ngIf="isEdit">Person Edit</h1>
+      <h1 *ngIf="isAdd">Person Insert</h1>
+  </div>
+</div>
+
 <form *ngIf="person" #editForm="ngForm"> 
+
     <div class="form-group">
+        <!-- Person form -->
         <div class="row mt-5">
             <div class="offset-3 col-6">
                 <label for="name">Name</label>
                 <input class="form-control" type="text" name="name" [(ngModel)]="person.name" [disabled]="!isEdit && !isAdd"/>
             </div>
         </div>
+
+        <div class="row mt-5" *ngIf="isEdit">
+          <div class="offset-3 col-3">
+            <button class="btn btn-primary menu-button" routerLink="/phone/add/{{person.businessEntityID}}">Add Phone</button>
+          </div>
+        </div>
+
+        <!-- PersonPhone list -->
+        <div *ngIf="person?.phones?.length > 0">
+            <div class="row mt-3">
+                <div class="offset-3 col-6 ">
+                  <table class="table table-striped table-bordered table-hover">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th scope="col" style="width: 60%">Phone Number</th>
+                        <th scope="col" style="width: 10%">Type</th>
+                        <th scope="col" style="width: 10%" *ngIf="isEdit"></th>
+                        <th scope="col" style="width: 10%" *ngIf="isEdit"></th>
+                        <th scope="col" style="width: 10%" *ngIf="isEdit"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let phone of person.phones">
+                        <td>{{phone.phoneNumber}}</td>
+                        <td>{{phone.phoneNumberTypeID}}</td>
+                        <td *ngIf="isEdit">
+                          <button class="btn btn-primary table-button" routerLink="/phone/view/{{phone.businessEntityID}}/{{phone.phoneNumber}}/{{phone.phoneNumberTypeID}}">
+                            <i class="fa fa-user"></i>
+                          </button>
+                        </td>
+                        <td *ngIf="isEdit">
+                          <button class="btn btn-warning table-button" routerLink="/phone/edit/{{phone.businessEntityID}}/{{phone.phoneNumber}}/{{phone.phoneNumberTypeID}}">
+                            <i class="fa fa-edit"></i>
+                          </button>
+                        </td>
+                        <td *ngIf="isEdit">
+                          <button class="btn btn-danger table-button" (click)="deletePhone(phone)">
+                            <i class="fa fa-trash"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+        </div>
+
+        <!-- PersonPhone form buttons -->
         <div class="row mt-5">
             <div class="offset-3 col-3">
-
                 <div *ngIf="isEdit">
                     <button class="btn btn-success menu-button" type="submit" (click)="updatePerson()">Update</button>
                 </div>
-
                 <div *ngIf="isAdd">
                     <button class="btn btn-success menu-button" type="submit" (click)="insertPerson()">Insert</button>
                 </div>
-
             </div>
         </div>
     </div>
