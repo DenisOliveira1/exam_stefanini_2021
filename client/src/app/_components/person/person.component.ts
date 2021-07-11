@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Person } from 'src/app/_models/Person';
+import { PersonPhone } from 'src/app/_models/PersonPhone';
 import { PersonService } from 'src/app/_services/person.service';
 
 @Component({
@@ -66,6 +67,10 @@ export class PersonComponent implements OnInit {
       return false;
     }
     return true;
+  }
+
+  deletePhone(phone : PersonPhone){
+    //deleta phone no banco e no array em memoria
   }
 
 }
