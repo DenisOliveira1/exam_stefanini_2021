@@ -64,6 +64,11 @@ export class PersonPhoneComponent implements OnInit {
       x.phoneNumberTypeID === phoneNumberTypeIDurrent;
     })[0])
 
+    if (Object.keys(this.phone).length === 0) {
+      this.router.navigateByUrl("/person/edit/" + businessEntityIDCurrent);
+      return;
+    }
+
     this.phoneOriginal = new PersonPhone();
     this.phoneOriginal.businessEntityID = this.phone.businessEntityID;
     this.phoneOriginal.phoneNumber = this.phone.phoneNumber;
