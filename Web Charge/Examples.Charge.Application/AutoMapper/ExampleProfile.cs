@@ -2,6 +2,7 @@
 using Examples.Charge.Application.Dtos;
 using Examples.Charge.Application.Messages.Request;
 using Examples.Charge.Domain.Aggregates.ExampleAggregate;
+using Examples.Charge.Domain.Aggregates.PersonAggregate;
 
 namespace Examples.Charge.Application.AutoMapper
 {

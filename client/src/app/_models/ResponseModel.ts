@@ -1,13 +1,11 @@
-import { Example } from "./Example";
-
-export class ResponseModel{
-    data : Data;
+export class ResponseModel<T>{
+    data : Data<T>;
     success : boolean;
 }
 
-export class Data{
+export class Data<T>{
     errors : string[];
     success : boolean;
-    exampleObjects : Example[];
-    exampleObject : Example;
+    objects : T[];
+    object : T;
 }
