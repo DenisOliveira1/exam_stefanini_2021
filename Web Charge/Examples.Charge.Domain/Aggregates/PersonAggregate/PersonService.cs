@@ -19,5 +19,6 @@ namespace Examples.Charge.Domain.Aggregates.PersonAggregate
         public async Task<bool> InsertAsync(Person person) => (await _personRepository.InsertAsync(person));
         public async Task<bool> UpdateAsync(Person person) => (await _personRepository.UpdateAsync(person));
         public async Task<bool> DeleteAsync(int id) => (await _personRepository.DeleteAsync(id));
+
     }
 }

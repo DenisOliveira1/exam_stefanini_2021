@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Examples.Charge.Application.Dtos;
+using Examples.Charge.Application.Messages.Request;
 using Examples.Charge.Domain.Aggregates.PersonAggregate;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,9 @@ namespace Examples.Charge.Application.AutoMapper
         {
             CreateMap<PersonPhone, PersonPhoneDto>()
                .ReverseMap();
+
+            CreateMap<PersonPhone, PersonPhoneRequest>()
+                .ReverseMap();
         }
     }
 }

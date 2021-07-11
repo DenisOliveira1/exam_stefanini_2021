@@ -50,6 +50,7 @@ namespace Examples.Charge.Application.Facade
             var person = _mapper.Map<Person>(personRequest);
             return await _personService.UpdateAsync(person);
         }
+
         public Task<bool> DeleteAsync(int id) => (_personService.DeleteAsync(id));
     }
 }

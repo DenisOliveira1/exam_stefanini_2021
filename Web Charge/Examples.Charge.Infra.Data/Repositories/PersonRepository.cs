@@ -17,11 +17,14 @@ namespace Examples.Charge.Infra.Data.Repositories
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public async Task<IEnumerable<Person>> FindAllAsync() => await _context.Person.Include(x => x.Phones).ToListAsync();
+        public async Task<IEnumerable<Person>> FindAllAsync() => await _context.Person
+                                                                               .Include(x => x.Phones)
+                                                                               .ToListAsync();
         public async Task<Person> FindAsync(int id)
         {
-            var person = await _context.Person.Include(x => x.Phones)
-                                .FirstOrDefaultAsync(x => x.BusinessEntityID == id);
+            var person = await _context.Person
+                                        .Include(x => x.Phones)
+                                        .FirstOrDefaultAsync(x => x.BusinessEntityID == id);
             return person;
         }
 
@@ -33,9 +36,10 @@ namespace Examples.Charge.Infra.Data.Repositories
 
         public async Task<bool> UpdateAsync(Person person)
         {
-            var personUpdating = await _context.Person.FindAsync(person.BusinessEntityID);
-            personUpdating.Name = person.Name;
-            _context.Entry(personUpdating).State = EntityState.Modified;
+            //var personUpdating = await _context.Person.FindAsync(person.BusinessEntityID);
+            //personUpdating.Name = person.Name;
+            //_context.Entry(personUpdating).State = EntityState.Modified;
+            _context.Update(person);
             return await _context.SaveChangesAsync() > 0;
         }
 

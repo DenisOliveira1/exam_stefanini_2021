@@ -4,6 +4,7 @@ import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Person } from '../_models/Person';
+import { PersonPhone } from '../_models/PersonPhone';
 import { ResponseModel } from '../_models/ResponseModel';
 
 @Injectable({
@@ -40,12 +41,20 @@ export class PersonService {
     );
   }
 
-  updatePerson(example : Person){
-    return this.httpClient.put(this.baseUrl + "person/", example);
+  updatePerson(person : Person){
+    return this.httpClient.put(this.baseUrl + "person/", person).pipe(
+      // map(() => {
+      //   // Updating memory array
+      //   const indexPerson = this.people?.indexOf(person);
+      //   if (indexPerson){
+      //     this.people[indexPerson] = person;
+      //   }
+      // })
+    );
   }
 
-  insertPerson(example : Person){
-    return this.httpClient.post(this.baseUrl + "person/", example);
+  insertPerson(person : Person){
+    return this.httpClient.post(this.baseUrl + "person/", person);
   }
 
   deletePersonById(id : number){
