@@ -36,21 +36,22 @@ namespace Examples.Charge.API.Controllers
         public async Task<ActionResult> Update([FromBody] PersonRequest personRequest)
         {
             if (await _facade.UpdateAsync(personRequest)) return NoContent();
-            return BadRequest("failed to update example");
+            return BadRequest("failed to update person");
         }
 
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] PersonRequest personRequest)
         {
             if (await _facade.InsertAsync(personRequest)) return Ok();
-            return BadRequest("failed to insert example");
+            return BadRequest("failed to insert person");
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
             if (await _facade.DeleteAsync(id)) return Ok();
-            return BadRequest("failed to delete example");
+            return BadRequest("failed to delete person");
         }
+
     }
 }

@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Person } from 'src/app/_models/Person';
+import { PersonPhone } from 'src/app/_models/PersonPhone';
+import { PersonPhoneService } from 'src/app/_services/person-phone.service';
 import { PersonService } from 'src/app/_services/person.service';
 
 @Component({
@@ -20,6 +22,7 @@ export class PersonComponent implements OnInit {
 
   constructor(
     private personService : PersonService,
+    private personPhoneService : PersonPhoneService,
     private route: ActivatedRoute,
     private router: Router,
     private toastr: ToastrService
@@ -66,6 +69,15 @@ export class PersonComponent implements OnInit {
       return false;
     }
     return true;
+  }
+
+  deletePhone(phone : PersonPhone){
+    this.personPhoneService.deletePhone(phone).subscribe( () => {
+      this.toastr.success("Phone deleted successfully");
+
+      const index = this.person.phones?.indexOf(phone);
+      this.person.phones?.splice(index,1);
+    })
   }
 
 }
