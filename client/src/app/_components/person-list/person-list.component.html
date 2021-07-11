@@ -1,5 +1,45 @@
-<ng-container *ngIf="people">
-    <div *ngFor="let person of people">
-        {{person.name}} - {{person.businessEntityID}}
-    </div>
-</ng-container>
+<!-- Necessário para os icones -->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="row mt-5">
+  <div class="offset-2 col-3">
+    <button class="btn btn-success menu-button" routerLink="/person/add">Add</button>
+  </div>
+</div>
+
+<div class="row mt-5">
+  <div class="offset-2 col-8 ">
+    <table class="table table-striped table-bordered table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col" style="width: 10%">ID</th>
+          <th scope="col" style="width: 60%">Name</th>
+          <th scope="col" style="width: 10%"></th>
+          <th scope="col" style="width: 10%"></th>
+          <th scope="col" style="width: 10%"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let person of people">
+          <td>{{person.businessEntityID}}</td>
+          <td>{{person.name}}</td>
+          <td>
+            <button class="btn btn-primary table-button" routerLink="/person/view/{{person.businessEntityID}}">
+              <i class="fa fa-user"></i>
+            </button>
+          </td>
+          <td>
+            <button class="btn btn-warning table-button" routerLink="/person/edit/{{person.businessEntityID}}">
+              <i class="fa fa-edit"></i>
+            </button>
+          </td>
+          <td>
+            <button class="btn btn-danger table-button" (click)="deletePerson(person.businessEntityID)">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

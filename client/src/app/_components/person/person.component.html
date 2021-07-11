@@ -1,0 +1,23 @@
+<form *ngIf="person" #editForm="ngForm"> 
+    <div class="form-group">
+        <div class="row mt-5">
+            <div class="offset-3 col-6">
+                <label for="name">Name</label>
+                <input class="form-control" type="text" name="name" [(ngModel)]="person.name" [disabled]="!isEdit && !isAdd"/>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="offset-3 col-3">
+
+                <div *ngIf="isEdit">
+                    <button class="btn btn-success menu-button" type="submit" (click)="updatePerson()">Update</button>
+                </div>
+
+                <div *ngIf="isAdd">
+                    <button class="btn btn-success menu-button" type="submit" (click)="insertPerson()">Insert</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
